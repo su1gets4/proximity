@@ -192,6 +192,34 @@ game_camera_number = 2
 
 sync_virtual_and_real_checkpoints = True
 
+# =======================================================================================================================
+# PPO CONFIGURATION - ADD THESE PARAMETERS FOR PPO TRAINING
+# =======================================================================================================================
+
+# PPO Network Architecture
+ppo_input_channels = 1  # 1 for grayscale (your images are likely grayscale based on IQN setup)
+ppo_num_actions = 12  # 12 discrete actions (0-11) as defined in inputs_list.py
+ppo_float_input_dim = float_input_dim  # Auto-calculated: 27 + 3*40 + 4*5 + 4*4 + 1 = 168
+
+# PPO Algorithm Parameters
+ppo_learning_rate = 3e-4
+ppo_gamma = 0.99  # Discount factor (simpler than IQN's gamma_schedule)
+ppo_gae_lambda = 0.95  # GAE lambda for advantage estimation
+ppo_clip_coef = 0.2  # Clipping parameter for PPO objective
+ppo_clip_vloss = True  # Whether to clip value function loss
+ppo_vf_coef = 0.5  # Value function loss coefficient
+ppo_ent_coef = 0.01  # Entropy bonus coefficient (encourages exploration)
+ppo_max_grad_norm = 0.5  # Gradient clipping
+
+# PPO Training Parameters
+ppo_rollout_length = 2048  # Number of steps to collect per rollout (adjust based on your episode length)
+ppo_epochs = 4  # Number of epochs to train on each batch
+ppo_batch_size = 256  # Mini-batch size for updates (smaller than IQN's 512 for stability)
+ppo_network_sync_freq = 10  # How often collectors sync with shared network (in episodes)
+ppo_shared_network_update_freq = 1  # How often learner updates shared network (every N updates)
+
+# =======================================================================================================================
+
 """ 
 ============================================      MAP CYCLE     =======================================================
 
