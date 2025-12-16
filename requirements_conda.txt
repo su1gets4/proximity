@@ -1,0 +1,12 @@
+# These packages are available on conda-forge servers
+numpy==1.26.4
+matplotlib
+joblib
+psutil
+setuptools
+typing
+numba
+tensorboard
+scipy
+prettytable
+ruff
